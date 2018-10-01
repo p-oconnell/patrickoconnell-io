@@ -1,9 +1,24 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: "Patrick O'Connell",
   },
   plugins: [
     'gatsby-plugin-react-helmet',
+    {
+      resolve: `gatsby-source-graphcms`,
+      options: {
+        endpoint: require('./graphcms-connect').endpoint,
+        token: require('./graphcms-connect').token,
+        query: require('./config-query').query,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-emotion`,
+      options: {
+        "sourceMap": true,
+        "autoLabel": true,
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
