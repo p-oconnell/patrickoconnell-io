@@ -1,16 +1,24 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "patrickoconnel-io",
+  "description": "Portfolio website of Patrick OConnell",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Patrick OConnell",
   "dependencies": {
+    "babel-plugin-emotion": "^9.2.10",
+    "emotion": "^9.2.10",
+    "emotion-server": "^9.2.10",
+    "emotion-theming": "^9.2.9",
     "gatsby": "next",
-    "gatsby-plugin-react-helmet": "next",
+    "gatsby-plugin-emotion": "^2.0.5",
     "gatsby-plugin-manifest": "next",
     "gatsby-plugin-offline": "next",
+    "gatsby-plugin-react-helmet": "next",
+    "gatsby-source-graphcms": "^1.0.0-alpha.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-helmet": "^5.2.0"
+    "react-emotion": "^9.2.10",
+    "react-helmet": "^5.2.0",
+    "showdown": "^1.8.6"
   },
   "keywords": [
     "gatsby"
