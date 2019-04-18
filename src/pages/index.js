@@ -8,7 +8,6 @@ export default ({ data }) => {
   return (
     <Layout>
       <div>
-        <Hero />
         <Grid />
       </div>
     </Layout>

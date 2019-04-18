@@ -57,7 +57,8 @@ table {
 	border-spacing: 0;
 }
 body {
-    font-family: 'Chivo', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #1E3783;
 }
 `
 
@@ -82,7 +83,7 @@ const Layout = ({ children }) => (
           ]}
         >
           <html lang="en" />
-          <link href="https://fonts.googleapis.com/css?family=Asul|Chivo" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,200i,400" rel="stylesheet" />
 
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
