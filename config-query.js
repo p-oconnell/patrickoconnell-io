@@ -4,6 +4,8 @@ exports.query = `{
     projectOrder
     projectSlug
     projectTitle
+    projectClientDescription
+    projectType
     projectDescription
     projectMediums
     projectImg {
