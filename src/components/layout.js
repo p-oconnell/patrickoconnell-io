@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import { injectGlobal } from 'emotion'
+import { ThemeProvider } from 'emotion-theming'
 
 import Header from './header'
 import Footer from './footer'
@@ -60,7 +61,20 @@ body {
     font-family: 'IBM Plex Mono', monospace;
     color: #1E3783;
 }
+html {
+    font-size: 19px;
+}
+* {
+  box-sizing: border-box;
+}
 `
+
+const theme = {
+  bicblue: '#1E3783',
+  txtlrg: '3.1rem',
+  txtmd: '2rem',
+  txtsm: '1.38rem',
+}
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -74,6 +88,7 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
+    <ThemeProvider theme={theme}>
       <>
         <Helmet
           title={data.site.siteMetadata.title}
@@ -92,6 +107,7 @@ const Layout = ({ children }) => (
         </div>
         <Footer />
       </>
+      </ThemeProvider>
     )}
   />
 )
