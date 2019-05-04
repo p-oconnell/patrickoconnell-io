@@ -71,9 +71,9 @@ html {
 
 const theme = {
   bicblue: '#1E3783',
-  txtlrg: '3.1rem',
-  txtmd: '2rem',
-  txtsm: '1.38rem',
+  txtlrg: '2.369rem',
+  txtmd: '1.77rem',
+  txtsm: '1.33rem',
 }
 
 const Layout = ({ children }) => (
@@ -98,7 +98,7 @@ const Layout = ({ children }) => (
           ]}
         >
           <html lang="en" />
-          <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,200i,400" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,200i,300" rel="stylesheet" />
 
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
