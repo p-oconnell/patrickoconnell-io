@@ -2,8 +2,6 @@ import React from 'react'
 import { StaticQuery, graphql, Link } from 'gatsby'
 import styled from 'react-emotion'
 
-import video from 'images/hero.webm'
-
 const Outer = styled.article`
   width: 100%;
   padding: 0 50px;
@@ -29,7 +27,7 @@ const HeroNameWrap = styled.div`
 
 const HeroPic = styled.picture`
   margin-right: 50px;
-  video {
+  img {
     border: 2px ${props => props.theme.bicblue} solid;
     width:100%
   }
@@ -79,14 +77,7 @@ const Hero = () => (
             <HeroPicWrap>
               <HeroLnk to={'/' + node.projectSlug}>
                 <HeroPic>
-                  <video
-                    playsinline="true"
-                    autoplay="true"
-                    loop="true"
-                    muted="true"
-                  >
-                    <source type="video/webm" src={video} />
-                  </video>
+                  <img src={node.projectHero.url} alt={node.projectTitle} />
                 </HeroPic>
               </HeroLnk>
           </HeroPicWrap>
