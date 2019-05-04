@@ -1,7 +1,6 @@
 import React from 'react'
 import { StaticQuery, graphql, Link } from 'gatsby'
 import styled from 'react-emotion'
-import './grid.css'
 
 const GridWrapper = styled.div`
   display: flex;
