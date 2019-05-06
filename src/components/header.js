@@ -4,8 +4,6 @@ import {
 } from 'gatsby'
 import styled from 'react-emotion'
 
-import logo from 'images/logotype.svg'
-
 const HeadWrapper = styled.header `
     width: 100%;
     padding: 0 50px;
@@ -37,8 +35,7 @@ const Header = ({siteTitle}) => (
             <MenuLnk to = "/about" > About < /MenuLnk>
         </Menu>
         <LogoLnk to = "/" >
-            < Logo src = {logo}
-              alt = {siteTitle} />
+            < Logo />
         </LogoLnk>
     </HeadWrapper>
 )
