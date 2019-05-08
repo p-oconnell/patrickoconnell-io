@@ -54,36 +54,38 @@ const Hero = () => (
   <StaticQuery
     query={graphql`
         query HeroQuery {
-  allMySqlResults(limit: 2, sort: {fields: [project_id], order: ASC}) {
-    edges {
-      node {
-        title
-        project_id
-        work_type
-        slug
-        description
-      }
-    }
-  }
-}
-
+            allProject(limit: 2, sort: {fields: [projectOrder], order: ASC}) {
+                edges {
+                    node {
+                        projectHero {
+                            url
+                        }
+                        projectTitle
+                        projectSlug
+                        projectClientDescription
+                        projectType
+                        projectOrder
+                    }
+                }
+            }
+        }
     `}
     render={data => (
       <Outer>
-      {data.allMySqlResults.edges.map(({ node }, index) => (
+      {data.allProject.edges.map(({ node }, index) => (
         <Wrap>
             <HeroPicWrap>
-              <HeroLnk to={'/' + node.slug}>
+              <HeroLnk to={'/' + node.projectSlug}>
                 <HeroPic>
-                  <img src={node.title} alt={node.title} />
+                  <img src={node.projectHero.url} alt={node.projectTitle} />
                 </HeroPic>
               </HeroLnk>
           </HeroPicWrap>
           <HeroNameWrap>
-              <HeroLnk to={'/' + node.slug}>
-                <HeroName>{node.title}</HeroName>
-                <HeroType>{node.work_type}</HeroType>
-                <HeroClientDescription>{node.work_type}</HeroClientDescription>
+              <HeroLnk to={'/' + node.projectSlug}>
+                <HeroName>{node.projectTitle}</HeroName>
+                <HeroType>{node.projectClientDescription}</HeroType>
+                <HeroClientDescription>{node.projectType}</HeroClientDescription>
               </HeroLnk>
           </HeroNameWrap>
         </Wrap>
