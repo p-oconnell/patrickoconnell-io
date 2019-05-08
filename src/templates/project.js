@@ -80,32 +80,11 @@ const Wrapper = styled.section`
     justify-content: center;
 `
 
-const GalleryWrap = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    width: calc(100%/6 * 4);
-        div {
-            width: calc(100%/2);
-            margin: ${props => props.theme.txtsm} 0;
-            :nth-of-type(odd) {
-                padding-right: ${props => props.theme.txtsm};
-            }
-            :nth-of-type(even) {
-                padding-left: ${props => props.theme.txtsm};
-            }
-        }
-        img {
-            width: 100%;
-            border: 2px ${props => props.theme.bicblue} solid;
-        }
-`
-
 const showdown = require('showdown')
 const converter = new showdown.Converter()
 
 export default ({ data }) => {
-  const description = converter.makeHtml(data.project.projectDescription)
+  const description = converter.makeHtml(data.mySqlResults.description)
 
   function createMarkup() {
     return { __html: description }
@@ -114,56 +93,37 @@ export default ({ data }) => {
   return (
     <Layout>
       <Helmet>
-        <title>{'Patrick O\'Connell - ' + data.project.projectTitle}</title>
+        <title>{'Patrick O\'Connell - ' + data.mySqlResults.title}</title>
         </Helmet>
     <Gradient />
     <MainImgWrap>
-        <img src={data.project.projectHero.url} />
+        <img src={data.mySqlResults.slug} />
     </MainImgWrap>
     <TitleWrap>
     <div>
-      <ProjectTitle>{data.project.projectTitle}</ProjectTitle>
-      <Client>{data.project.projectClientDescription}</Client>
+      <ProjectTitle>{data.mySqlResults.title}</ProjectTitle>
+      <Client>{data.mySqlResults.work_type}</Client>
     </div>
     <div>
-       <Work>{data.project.projectType}</Work>
+       <Work>{data.mySqlResults.work_type}</Work>
      </div>
     </TitleWrap>
     <DescriptionWrap>
         <div dangerouslySetInnerHTML={createMarkup()} />
      </DescriptionWrap>
-     <Wrapper>
-      <GalleryWrap>
-        {data.project.projectImg.map(({ url }, index) => (
-          <div key={index}>
-            <img src={url} />
-          </div>
-        ))}
-      </GalleryWrap>
-      </Wrapper>
     </Layout>
   )
 }
 
 export const ProjectPageQuery = graphql`
-  query getProjectById($id: String!) {
-    project(id: { eq: $id }) {
+  query getMySqlResultsById($id: String!) {
+    mySqlResults(id: { eq: $id }) {
       id
-      projectOrder
-      projectSlug
-      projectTitle
-      projectDescription
-      projectClientDescription
-      projectType
-      projectTitle
-      projectMediums
-      projectHero {
-          url
-      }
-      projectImg {
-        fileName
-        url
-      }
+      rank
+      slug
+      description
+      work_type
+      title
     }
   }
 `

@@ -39,35 +39,30 @@ const Article = styled.article`
 const Grid = () => (
   <StaticQuery
     query={graphql`
-      query GridQuery {
-        allProject(
-          skip: 2
-          limit: 6
-          sort: { fields: [projectOrder], order: ASC }
-        ) {
-          edges {
-            node {
-              projectHero {
-                url
-              }
-              projectTitle
-              projectSlug
-            }
-          }
+        query GridQuery {
+    allMySqlResults(skip: 2, limit: 6, sort: {fields: [project_id], order: ASC}) {
+      edges {
+        node {
+          title
+          slug
+          description
         }
       }
+    }
+  }
+
     `}
     render={data => (
       <GridWrapper>
-        {data.allProject.edges.map(({ node }, index) => (
+        {data.allMySqlResults.edges.map(({ node }, index) => (
           <Article
             key=
             {index}>
-            <Link to={'/' + node.projectSlug}>
+            <Link to={'/' + node.slug}>
               <GridHero>
-                <img src={node.projectHero.url} alt={node.projectTitle} />
+                <img src={node.slug} alt={node.title} />
               </GridHero>
-              <GridTitle>{node.projectTitle}</GridTitle>
+              <GridTitle>{node.title}</GridTitle>
             </Link>
           </Article>
         ))}
