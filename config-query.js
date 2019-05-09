@@ -1,20 +1,22 @@
 exports.query = `{
   projects {
     id
-    projectOrder
-    projectSlug
-    projectTitle
-    projectClientDescription
-    projectType
-    projectDescription
-    projectMediums
-    projectImg {
-      fileName
+    sort
+    title
+    slug
+    workType
+    description
+    heroImage{
       url
+      altText
     }
-    projectHero {
-      fileName
+    thumbnailImage{
       url
+      altText
+    }
+    galleryImage{
+      url
+      altText
     }
   }
 }`

@@ -15,7 +15,7 @@ exports.createPages = ({ graphql, actions }) => {
               edges {
                 node {
                   id
-                  projectSlug
+                  slug
                 }
               }
             }
@@ -28,7 +28,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create pages for each markdown file.
         result.data.allProject.edges.forEach(({ node }) => {
-          const path = node.projectSlug
+          const path = node.slug
           createPage({
             path,
             component: projectTemplate,

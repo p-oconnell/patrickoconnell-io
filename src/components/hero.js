@@ -44,27 +44,22 @@ const HeroType = styled.h4`
     font-weight: 200;
     font-style: italic;
 `
-const HeroClientDescription = styled.div`
-    font-size: ${props => props.theme.txtmd};
-    font-weight: 200;
-    margin-top: ${props => props.theme.txtlrg};
-`
 
 const Hero = () => (
   <StaticQuery
     query={graphql`
         query HeroQuery {
-            allProject(limit: 2, sort: {fields: [projectOrder], order: ASC}) {
+            allProject(limit: 2, sort: {fields: [sort], order: ASC}) {
                 edges {
                     node {
-                        projectHero {
+                        heroImage {
                             url
                         }
-                        projectTitle
-                        projectSlug
-                        projectClientDescription
-                        projectType
-                        projectOrder
+                        title
+                        slug
+                        description
+                        workType
+                        sort
                     }
                 }
             }
@@ -75,17 +70,16 @@ const Hero = () => (
       {data.allProject.edges.map(({ node }, index) => (
         <Wrap>
             <HeroPicWrap>
-              <HeroLnk to={'/' + node.projectSlug}>
+              <HeroLnk to={'/' + node.slug}>
                 <HeroPic>
-                  <img src={node.projectHero.url} alt={node.projectTitle} />
+                  <img src={node.heroImage.url} alt={node.altText} />
                 </HeroPic>
               </HeroLnk>
           </HeroPicWrap>
           <HeroNameWrap>
-              <HeroLnk to={'/' + node.projectSlug}>
-                <HeroName>{node.projectTitle}</HeroName>
-                <HeroType>{node.projectClientDescription}</HeroType>
-                <HeroClientDescription>{node.projectType}</HeroClientDescription>
+              <HeroLnk to={'/' + node.slug}>
+                <HeroName>{node.title}</HeroName>
+                <HeroType>{node.workType}</HeroType>
               </HeroLnk>
           </HeroNameWrap>
         </Wrap>

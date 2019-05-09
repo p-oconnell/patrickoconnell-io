@@ -44,12 +44,7 @@ const ProjectTitle = styled.h1`
     font-size: ${props => props.theme.txtlrg};
     margin-top: ${props => props.theme.txtmd};
 `
-const Client = styled.h3`
-    font-weight: 200;
-    font-size: ${props => props.theme.txtsm};
-    font-style: italic;
-    margin-top: 0.5rem;
-`
+
 const Work = styled.h2`
     font-weight: 200;
     font-size: ${props => props.theme.txtmd};
@@ -105,7 +100,7 @@ const showdown = require('showdown')
 const converter = new showdown.Converter()
 
 export default ({ data }) => {
-  const description = converter.makeHtml(data.project.projectDescription)
+  const description = converter.makeHtml(data.project.description)
 
   function createMarkup() {
     return { __html: description }
@@ -114,19 +109,18 @@ export default ({ data }) => {
   return (
     <Layout>
       <Helmet>
-        <title>{'Patrick O\'Connell - ' + data.project.projectTitle}</title>
+        <title>{'Patrick O\'Connell - ' + data.project.title}</title>
         </Helmet>
     <Gradient />
     <MainImgWrap>
-        <img src={data.project.projectHero.url} />
+        <img src={data.project.heroImage.url} />
     </MainImgWrap>
     <TitleWrap>
     <div>
-      <ProjectTitle>{data.project.projectTitle}</ProjectTitle>
-      <Client>{data.project.projectClientDescription}</Client>
+      <ProjectTitle>{data.project.title}</ProjectTitle>
     </div>
     <div>
-       <Work>{data.project.projectType}</Work>
+       <Work>{data.project.workType}</Work>
      </div>
     </TitleWrap>
     <DescriptionWrap>
@@ -134,9 +128,9 @@ export default ({ data }) => {
      </DescriptionWrap>
      <Wrapper>
       <GalleryWrap>
-        {data.project.projectImg.map(({ url }, index) => (
+        {data.project.galleryImage.map(({ url, altText }, index) => (
           <div key={index}>
-            <img src={url} />
+            <img src={url} alt={altText} />
           </div>
         ))}
       </GalleryWrap>
@@ -149,20 +143,18 @@ export const ProjectPageQuery = graphql`
   query getProjectById($id: String!) {
     project(id: { eq: $id }) {
       id
-      projectOrder
-      projectSlug
-      projectTitle
-      projectDescription
-      projectClientDescription
-      projectType
-      projectTitle
-      projectMediums
-      projectHero {
+      sort
+      slug
+      title
+      description
+      workType
+      heroImage {
           url
+          altText
       }
-      projectImg {
-        fileName
+      galleryImage {
         url
+        altText
       }
     }
   }

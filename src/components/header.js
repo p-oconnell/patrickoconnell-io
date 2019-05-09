@@ -4,7 +4,7 @@ import {
 } from 'gatsby'
 import styled from 'react-emotion'
 
-import logo from 'images/logotype.svg'
+import logo from '../images/logotype.svg'
 
 const HeadWrapper = styled.header `
     width: 100%;
