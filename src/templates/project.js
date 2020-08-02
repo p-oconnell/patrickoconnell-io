@@ -4,26 +4,12 @@ import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import styled from 'react-emotion'
 
-const Gradient = styled.div`
-height: 78vh;
-width: 100%;
-position: absolute;
-top: 0;
-left: 0;
-overflow: hidden;
-z-index: -100;
-background: linear-gradient(#98CC84 55%, #DD975B);
-`
-
 const MainImgWrap = styled.div`
-    width: calc(100%/6 * 4);
-    height: 687px;
-    background-color: #FFF;
-    margin: ${props => props.theme.txtsm} auto 0;
     img {
+        display: block;
         border: 2px ${props => props.theme.bicblue} solid;
-        width: 100%;
-        height: 100%;
+        width: calc(100%/6 * 4);
+        margin: ${props => props.theme.txtsm} auto 0;
     }
 `
 
@@ -110,8 +96,13 @@ export default ({ data }) => {
     <Layout>
       <Helmet>
         <title>{'Patrick O\'Connell - ' + data.project.title}</title>
-        </Helmet>
-    <Gradient />
+        <style type="text/css">{`
+            body {
+                background: linear-gradient(to bottom, rgba(152,204,132,1) 0%, rgba(152,204,132,0.36) 64%, rgba(221,151,91,0.16) 84%, rgba(221,151,91,0) 100%) no-repeat;
+                background-size: 100% 100vh;
+            }`}</style>
+    </Helmet>
+    <article>
     <MainImgWrap>
         <img src={data.project.heroImage.url} />
     </MainImgWrap>
@@ -135,6 +126,7 @@ export default ({ data }) => {
         ))}
       </GalleryWrap>
       </Wrapper>
+      </article>
     </Layout>
   )
 }

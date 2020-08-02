@@ -12,6 +12,7 @@ const HeadWrapper = styled.header `
 `
 const Logo = styled.img `
     display: block;
+    height: 63px;
 `
 const LogoLnk = styled(Link)`
     display: block;
