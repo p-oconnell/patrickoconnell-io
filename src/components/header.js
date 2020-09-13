@@ -1,47 +1,64 @@
 import React from 'react'
-import {
-    Link
-} from 'gatsby'
+import { Link } from 'gatsby'
 import styled from 'react-emotion'
 
-import logo from '../images/logotype.svg'
+import logo from '../images/LOGO.svg'
 
-const HeadWrapper = styled.header `
-    width: 100%;
-    padding: 0 50px;
+const HeadWrapper = styled.header`
+  width: 100%;
+  padding: 0 10.41%;
 `
-const Logo = styled.img `
-    display: block;
-    height: 63px;
+const Logo = styled.img`
+  display: block;
+  height: 32px;
+  @media (max-width: 420px) {
+      width: 100%;
+      height: auto;
+      margin-top: 22px;
+  }
 `
 const LogoLnk = styled(Link)`
-    display: block;
-    padding-top: 48px;
+  display: block;
+  padding: 50px 0 82px;
+  @media (max-width: 420px) {
+      padding-bottom: 45px;
+  }
 `
-const Menu = styled.nav `
-    float: right;
-    margin-top: 20px;
+const Menu = styled.nav`
+  float: right;
+  margin-top: 34px;
+  @media (max-width: 420px) {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      height: auto;
+      margin-top: 17px;
+  }
 `
 const MenuLnk = styled(Link)`
-    display: inline-block;
-    font-size: ${props => props.theme.txtsm};
-    font-decoration: none;
-    font-weight: 200;
-    color: #1E3783;
-    padding-left: 44px;
+  display: inline-block;
+  text-decoration: none;
+  color: ${props => props.theme.whisper};
+  font-weight: 400;
+  padding-left: 34px;
+  &:hover {
+      color: #57963F;
+  }
+   @media (max-width: 420px) {
+       padding: 0;
+   }
 `
 
-const Header = ({siteTitle}) => (
-    <HeadWrapper>
-        <Menu>
-            <MenuLnk to = "/resume" > R&eacute;sum&eacute; < /MenuLnk>
-            <MenuLnk to = "/about" > About < /MenuLnk>
-        </Menu>
-        <LogoLnk to = "/" >
-            < Logo src = {logo}
-              alt = {siteTitle} />
-        </LogoLnk>
-    </HeadWrapper>
+const Header = ({ siteTitle }) => (
+  <HeadWrapper>
+    <Menu>
+      <MenuLnk to="/resume"> Résumé </MenuLnk>
+      <MenuLnk to="/about"> About </MenuLnk>
+    </Menu>
+    <LogoLnk to="/">
+      <Logo src={logo} alt={siteTitle} />
+    </LogoLnk>
+  </HeadWrapper>
 )
 
 export default Header
