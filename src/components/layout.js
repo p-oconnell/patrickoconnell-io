@@ -2,18 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import { injectGlobal } from 'emotion'
 import { ThemeProvider } from 'emotion-theming'
-
+import { injectGlobal } from 'emotion'
 import Header from './header'
 import Footer from './footer'
 
 injectGlobal`
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -34,7 +28,6 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
@@ -45,35 +38,35 @@ body {
 ol, ul {
 	list-style: none;
 }
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-body {
-    font-family: 'IBM Plex Mono', monospace;
-    color: #1E3783;
-}
-html {
-    font-size: 19px;
-}
 * {
   box-sizing: border-box;
 }
+html {
+    font-size: 26px;
+    background-color: #424242;
+}
+body {
+    font-family: 'EB Garamond', serif;
+    color: #e5e5e5;
+}
+a {
+    color: #e5e5e5;
+    text-decoration: none;
+}
+  @media (max-width: 420px) {
+      html {
+          font-size: 19px
+      }
+  }
 `
 
 const theme = {
-  bicblue: '#1E3783',
-  txtlrg: '2.369rem',
-  txtmd: '1.77rem',
-  txtsm: '1.33rem',
+  charcoal: '#454545',
+  whisper: '#e5e5e5',
+  txtlrg: '1.807rem',
+  txtmd: '1.42rem',
+  border: 'inset 15px #e5e5e5',
+  borderMobile: 'inset 7px #e5e5e5',
 }
 
 const Layout = ({ children }) => (
@@ -88,25 +81,38 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-    <ThemeProvider theme={theme}>
-      <>
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
-          ]}
-        >
-          <html lang="en" />
-          <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,200i,300" rel="stylesheet" />
-
-        </Helmet>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div>
-          {children}
-        </div>
-        <Footer />
-      </>
+      <ThemeProvider theme={theme}>
+        <>
+          <Helmet
+            title={data.site.siteMetadata.title}
+            meta={[
+              { name: 'description', content: 'Sample' },
+              { name: 'keywords', content: 'sample, something' },
+            ]}
+            script={[
+                {
+                  defer: 'true',
+                  src: 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js',
+                  type: 'text/javascript',
+                },
+              {
+                defer: 'true',
+                src: '../../tothetop.js',
+                type: 'text/javascript',
+              }
+            ]}
+          >
+            <html lang="en" />
+            <link
+              href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap"
+              rel="stylesheet"
+            />
+            <body id="top" />
+          </Helmet>
+          <Header siteTitle={data.site.siteMetadata.title} />
+          <div>{children}</div>
+          <Footer />
+        </>
       </ThemeProvider>
     )}
   />
