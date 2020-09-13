@@ -8,3 +8,4 @@ yarn-error.log
 .DS_Store
 graphcms-connect.js
 src/pages/index-old.js
+=2.8.0
