@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'gatsby'
 import styled from 'react-emotion'
+import toTheTop from './tothetop'
 
 import arrow from '../images/up-arrow.svg'
 
@@ -14,11 +15,11 @@ const Foot = styled.footer`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  background-color: #98CC84;
-   @media (max-width: 420px) {
-        flex-direction: column-reverse;
-        align-items: center;
-   }
+  background-color: #98cc84;
+  @media (max-width: 420px) {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 `
 
 const Copy = styled.div`
@@ -37,7 +38,7 @@ const TopLnk = styled(Link)`
   outline: none;
   text-decoration: none;
   &:hover div {
-      color: #57963F;
+    color: #57963f;
   }
 `
 
@@ -55,16 +56,25 @@ const TopLabel = styled.div`
 
 const currentYear = new Date().getFullYear()
 
-const Footer = ({ siteTitle }) => (
-  <Foot>
-    <Copy>&copy;{currentYear} &nbsp; Patrick O'Connell</Copy>
-    <Top>
-      <TopLnk to="#top">
-        <Arrow src={arrow} alt={siteTitle} />
-        <TopLabel>TOP</TopLabel>
-      </TopLnk>
-    </Top>
-  </Foot>
-)
+const Footer = ({ siteTitle }) => {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      console.log('USE EFFECT FUNCTION TRIGGERED')
+      toTheTop()
+    }
+  })
+
+  return (
+    <Foot>
+      <Copy>&copy;{currentYear} &nbsp; Patrick O'Connell</Copy>
+      <Top>
+        <TopLnk className="top-lnk" to="#top">
+          <Arrow src={arrow} alt={siteTitle} />
+          <TopLabel>TOP</TopLabel>
+        </TopLnk>
+      </Top>
+    </Foot>
+  )
+}
 
 export default Footer
