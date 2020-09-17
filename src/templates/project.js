@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../components/layout'
 import Gallery from '../components/gallery'
-import { withPrefix, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import styled from 'react-emotion'
 
@@ -18,10 +18,10 @@ const MainImgWrap = styled.div`
   padding: 5vh;
   background: url(${background});
   @media (max-width: 420px) {
-         background: none;
-         border: none;
-         padding: 0;
-         height: auto;
+    background: none;
+    border: none;
+    padding: 0;
+    height: auto;
   }
   img {
     display: block;
@@ -29,7 +29,7 @@ const MainImgWrap = styled.div`
     margin: 0 auto;
     object-fit: contain;
     @media (max-width: 420px) {
-            width: 100%;
+      width: 100%;
     }
   }
 `
@@ -42,7 +42,7 @@ const TitleWrap = styled.div`
   width: 100%;
   margin: 0 23px 23px 23px;
   @media (max-width: 420px) {
-      margin: 0 0 23px 0;
+    margin: 0 0 23px 0;
   }
 `
 
@@ -95,13 +95,18 @@ export default ({ data }) => {
         <TitleWrap>
           <ProjectTitle>{data.project.title}&nbsp;</ProjectTitle>
           <Work>
-            ( <span>{data.project.workType}</span> )
+            (<span>{data.project.workType}</span>)
           </Work>
         </TitleWrap>
-        <MainImgWrap>
-          <img src={data.project.heroImage.url} />
-        </MainImgWrap>
-        <Gallery galleryImage={data.project.galleryImage} heroThumb={data.project.heroImage.url} />
+        <div>
+          <MainImgWrap>
+            <img src={data.project.heroImage.url} />
+          </MainImgWrap>
+          <Gallery
+            galleryImage={data.project.galleryImage}
+            heroThumb={data.project.heroImage.url}
+          />
+        </div>
         <DescriptionWrap>
           <div dangerouslySetInnerHTML={createMarkup()} />
         </DescriptionWrap>
