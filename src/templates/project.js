@@ -5,33 +5,8 @@ import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import styled from 'react-emotion'
 
-import background from '../images/diag-lines.svg'
-
 const Article = styled.article`
   margin: 0 10.41%;
-`
-
-const MainImgWrap = styled.div`
-  width: 100%;
-  border: solid 2px #e5e5e5;
-  height: 74vh;
-  padding: 5vh;
-  background: url(${background});
-  @media (max-width: 420px) {
-    background: none;
-    border: none;
-    padding: 0;
-    height: auto;
-  }
-  img {
-    display: block;
-    max-height: 100%;
-    margin: 0 auto;
-    object-fit: contain;
-    @media (max-width: 420px) {
-      width: 100%;
-    }
-  }
 `
 
 const TitleWrap = styled.div`
@@ -40,7 +15,7 @@ const TitleWrap = styled.div`
   align-items: flex-end;
   justify-content: flex-start;
   width: 100%;
-  margin: 0 23px 23px 23px;
+  margin: 0 23px 23px 0;
   @media (max-width: 420px) {
     margin: 0 0 23px 0;
   }
@@ -68,11 +43,12 @@ const DescriptionWrap = styled.div`
   margin-bottom: 114px;
   div {
     width: 750px;
-    margin: 23px auto 0;
+    margin: 1.5rem auto 0;
   }
   p {
     font-weight: 400;
     line-height: 156%;
+    margin-bottom: 1.5rem;
   }
 `
 
@@ -98,15 +74,7 @@ export default ({ data }) => {
             (<span>{data.project.workType}</span>)
           </Work>
         </TitleWrap>
-        <div>
-          <MainImgWrap>
-            <img src={data.project.heroImage.url} />
-          </MainImgWrap>
-          <Gallery
-            galleryImage={data.project.galleryImage}
-            heroThumb={data.project.heroImage.url}
-          />
-        </div>
+        <Gallery galleryImage={data.project.galleryImage} />
         <DescriptionWrap>
           <div dangerouslySetInnerHTML={createMarkup()} />
         </DescriptionWrap>

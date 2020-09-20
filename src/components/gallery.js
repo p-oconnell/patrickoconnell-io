@@ -1,6 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import styled from 'react-emotion'
+import Thumb from './thumbnail'
+
+import background from '../images/diag-lines.svg'
+
+const MainImgWrap = styled.div`
+  width: 100%;
+  border: solid 2px #e5e5e5;
+  height: 74vh;
+  padding: 5vh;
+  background: url(${background});
+  @media (max-width: 420px) {
+    background: none;
+    border: none;
+    padding: 0;
+    height: auto;
+  }
+  img {
+    display: block;
+    max-height: 100%;
+    margin: 0 auto;
+    object-fit: contain;
+    @media (max-width: 420px) {
+      width: 100%;
+    }
+  }
+`
 
 const Wrapper = styled.section`
   display: flex;
@@ -11,15 +37,22 @@ const Wrapper = styled.section`
 const GalleryWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   margin: 23px 23px 0;
+  width: 100%;
   @media (max-width: 420px) {
     margin: 23px 0 0;
   }
-  div {
-    width: calc(100% / 6);
-    padding: 30px;
+  a {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 12%;
+    padding: 0.5rem;
     border: 2px solid #e5e5e5;
     border-radius: 8px;
+    height: 14vh;
+    min-height: 100px;
     @media (max-width: 420px) {
       padding: 0;
       border: none;
@@ -28,27 +61,33 @@ const GalleryWrap = styled.div`
     }
   }
   img {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
   }
 `
 
 export default function Gallery(props) {
-  if (props.galleryImage.length === 0) {
-    return null
+  const [biz, setBiz] = useState(props.galleryImage[0].url)
+  const incrementCount = e => changeImage(e)
+
+  function changeImage(e) {
+    e.preventDefault()
+    setBiz(e.currentTarget)
   }
 
   return (
-    <Wrapper>
-      <GalleryWrap className="thumbs">
-        <div>
-          <img src={props.heroThumb} data-selected />
-        </div>
-        {props.galleryImage.map(({ url, altText }, index) => (
-          <div key={index}>
-            <img src={url} alt={altText} />
-          </div>
-        ))}
-      </GalleryWrap>
-    </Wrapper>
+    <div>
+      <MainImgWrap>
+        <img src={biz} />
+      </MainImgWrap>
+      <Wrapper>
+        <GalleryWrap className="thumbs">
+          {props.galleryImage.map(({ url, altText }, index) => (
+            <Thumb key={index} position={index} url={url} altText={altText} />
+          ))}
+        </GalleryWrap>
+      </Wrapper>
+    </div>
   )
 }
