@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'gatsby'
 import styled from 'react-emotion'
 import Thumb from './thumbnail'
-
 import background from '../images/diag-lines.svg'
 
 const MainImgWrap = styled.div`
@@ -43,37 +41,14 @@ const GalleryWrap = styled.div`
   @media (max-width: 420px) {
     margin: 23px 0 0;
   }
-  a {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    width: 12%;
-    padding: 0.5rem;
-    border: 2px solid #e5e5e5;
-    border-radius: 8px;
-    height: 14vh;
-    min-height: 100px;
-    @media (max-width: 420px) {
-      padding: 0;
-      border: none;
-      border-radius: 0;
-      width: calc(100% / 3);
-    }
-  }
-  img {
-    max-width: 100%;
-    max-height: 100%;
-    margin: 0 auto;
-  }
 `
 
 export default function Gallery(props) {
   const [biz, setBiz] = useState(props.galleryImage[0].url)
   const incrementCount = e => changeImage(e)
 
-  function changeImage(e) {
-    e.preventDefault()
-    setBiz(e.currentTarget)
+  function changeImage(i) {
+    setBiz(props.galleryImage[i].url)
   }
 
   return (
@@ -84,7 +59,13 @@ export default function Gallery(props) {
       <Wrapper>
         <GalleryWrap className="thumbs">
           {props.galleryImage.map(({ url, altText }, index) => (
-            <Thumb key={index} position={index} url={url} altText={altText} />
+            <Thumb
+              url={url}
+              altText={altText}
+              key={index}
+              position={index}
+              click={incrementCount}
+            />
           ))}
         </GalleryWrap>
       </Wrapper>
