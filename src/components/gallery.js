@@ -44,17 +44,35 @@ const GalleryWrap = styled.div`
 `
 
 export default function Gallery(props) {
-  const [biz, setBiz] = useState(props.galleryImage[0].url)
+  const [biz, setBiz] = useState(0)
   const incrementCount = e => changeImage(e)
 
+  function onClickForward() {
+    if (biz + 1 === props.galleryImage.length) {
+      setBiz(0)
+    } else {
+      setBiz(biz + 1)
+    }
+  }
+
+  function onClickBack() {
+    if (biz - 1 === -1) {
+      setBiz(props.galleryImage.length - 1)
+    } else {
+      setBiz(biz - 1)
+    }
+  }
+
   function changeImage(i) {
-    setBiz(props.galleryImage[i].url)
+    setBiz(i)
   }
 
   return (
     <div>
       <MainImgWrap>
-        <img src={biz} />
+        <button onClick={onClickBack}>Previous Image</button>
+        <button onClick={onClickForward}>Next Image</button>
+        <img key={biz} src={props.galleryImage[biz].url} />
       </MainImgWrap>
       <Wrapper>
         <GalleryWrap className="thumbs">
@@ -65,6 +83,7 @@ export default function Gallery(props) {
               key={index}
               position={index}
               click={incrementCount}
+              biz={biz}
             />
           ))}
         </GalleryWrap>
