@@ -8,24 +8,24 @@ const Outer = styled.article`
   width: 100%;
   padding: 0 10.41%;
   margin-bottom: 114px;
-   @media (max-width: 420px) {
-       margin-bottom: 36px;
-   }
+  @media (max-width: 420px) {
+    margin-bottom: 36px;
+  }
 `
 const Wrap = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 114px;
   :nth-of-type(even) {
-      flex-direction: row-reverse;
-       @media (max-width: 420px) {
-            flex-direction: column;
-       }
+    flex-direction: row-reverse;
+    @media (max-width: 420px) {
+      flex-direction: column;
+    }
   }
   @media (max-width: 420px) {
-       flex-direction: column;
-       margin-bottom: 36px;
-   }
+    flex-direction: column;
+    margin-bottom: 36px;
+  }
 `
 
 const Hero = () => (
@@ -41,6 +41,7 @@ const Hero = () => (
               id
               title
               slug
+              industry
               description
               workType
               sort
@@ -52,19 +53,20 @@ const Hero = () => (
     render={data => (
       <Outer>
         {data.allProject.edges.map(({ node }, index) => (
-              <Wrap key={index}>
-                <FeaturedImg
-                  slug={node.slug}
-                  src={node.heroImage.url}
-                  alt={node.altText}
-                />
-                <FeaturedTitle
-                  slug={node.slug}
-                  title={node.title}
-                  workType={node.workType}
-                />
-              </Wrap>
-            ))}
+          <Wrap key={index}>
+            <FeaturedImg
+              slug={node.slug}
+              src={node.heroImage.url}
+              alt={node.altText}
+            />
+            <FeaturedTitle
+              slug={node.slug}
+              title={node.title}
+              workType={node.workType}
+              industry={node.industry}
+            />
+          </Wrap>
+        ))}
       </Outer>
     )}
   />

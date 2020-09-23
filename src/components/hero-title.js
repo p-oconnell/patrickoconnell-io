@@ -9,11 +9,12 @@ const Info = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #373737;
   @media (max-width: 420px) {
-      border: ${props => props.theme.borderMobile};
-      height: auto;
-      width: 100%;
-      padding: 16px;
+    border: ${props => props.theme.borderMobile};
+    height: auto;
+    width: 100%;
+    padding: 16px;
   }
 `
 
@@ -39,7 +40,7 @@ const Job = styled.h3`
   font-size: 1rem;
   margin-top: 34px;
   @media (max-width: 420px) {
-       margin-top: 0;
+    margin-top: 0;
   }
 `
 
@@ -48,7 +49,7 @@ export default function FeaturedTitle(props) {
     <Info>
       <ProjLnk to={'/' + props.slug}>
         <Client>{props.title}</Client>
-        <Industry>{props.workType}</Industry>
+        <Industry>{props.industry}</Industry>
         <Job>{props.workType}</Job>
       </ProjLnk>
     </Info>
