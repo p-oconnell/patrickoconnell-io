@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Layout from '../components/layout'
 import Gallery from '../components/gallery'
 import { graphql } from 'gatsby'
@@ -98,6 +98,7 @@ export const ProjectPageQuery = graphql`
       }
       galleryImage {
         url
+        handle
         altText
       }
     }
