@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../components/layout'
-import Gallery from '../components/gallery'
+import Slider from '../components/Slider'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import styled from 'react-emotion'
@@ -56,6 +56,10 @@ const showdown = require('showdown')
 const converter = new showdown.Converter()
 
 export default ({ data }) => {
+  const galleryImages = data.project.galleryImage
+
+  const images = galleryImages.map(galleryImages => galleryImages.handle)
+
   const description = converter.makeHtml(data.project.description)
 
   function createMarkup() {
@@ -74,7 +78,7 @@ export default ({ data }) => {
             (<span>{data.project.workType}</span>)
           </Work>
         </TitleWrap>
-        <Gallery galleryImage={data.project.galleryImage} />
+        <Slider slides={images} />
         <DescriptionWrap>
           <div dangerouslySetInnerHTML={createMarkup()} />
         </DescriptionWrap>
