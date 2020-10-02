@@ -1,5 +1,5 @@
 import React from 'react'
-import FeaturedTitle from '../components/hero-title'
+import FeaturedTitle from '../components/featured-title'
 import FeaturedImg from '../components/fearured-img'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'react-emotion'
@@ -28,7 +28,7 @@ const Wrap = styled.div`
   }
 `
 
-const Hero = () => (
+const Featured = () => (
   <StaticQuery
     query={graphql`
       query HeroQuery {
@@ -37,6 +37,8 @@ const Hero = () => (
             node {
               heroImage {
                 url
+                handle
+                altText
               }
               id
               title
@@ -57,7 +59,8 @@ const Hero = () => (
             <FeaturedImg
               slug={node.slug}
               src={node.heroImage.url}
-              alt={node.altText}
+              handle={node.heroImage.handle}
+              alt={node.heroImage.altText}
             />
             <FeaturedTitle
               slug={node.slug}
@@ -72,4 +75,4 @@ const Hero = () => (
   />
 )
 
-export default Hero
+export default Featured

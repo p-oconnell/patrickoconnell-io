@@ -1,7 +1,15 @@
 import React, { useState } from 'react'
 import styled from 'react-emotion'
-import Thumb from './thumbnail'
+import Thumb from './gallery-thumb'
+import { CSSTransition, SwitchTransition } from 'react-transition-group'
+import ImageLoad from './imageloader'
+
 import background from '../images/diag-lines.svg'
+import next from '../images/next.svg'
+import back from '../images/back.svg'
+import nextHover from '../images/next-hover.svg'
+import backHover from '../images/back-hover.svg'
+import './gallery-transitions.css'
 
 const MainImgWrap = styled.div`
   width: 100%;
@@ -9,6 +17,11 @@ const MainImgWrap = styled.div`
   height: 74vh;
   padding: 5vh;
   background: url(${background});
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
   @media (max-width: 420px) {
     background: none;
     border: none;
@@ -21,8 +34,78 @@ const MainImgWrap = styled.div`
     margin: 0 auto;
     object-fit: contain;
     @media (max-width: 420px) {
-      width: 100%;
+      max-width: 100%;
+      height: 30vh;
     }
+  }
+`
+const BackBtn = styled.button`
+  background: url(${back});
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 0;
+  height: 10%;
+  padding-right: 2.19%; /* (img-height / img-width * width) */
+  border: none;
+  z-index: 100;
+  transition: background 300ms ease-out;
+  &:focus {
+    outline: thin dotted;
+  }
+  &:hover {
+    background: url(${backHover});
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 0;
+    height: 10%;
+    padding-right: 2.19%;
+    transition: background 300ms ease-out;
+  }
+  span {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  @media (max-width: 420px) {
+    display: none;
+  }
+`
+
+const FwdBtn = styled.button`
+  background: url(${next});
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 0;
+  height: 10%;
+  padding-left: 2.19%; /* (img-height / img-width * width) */
+  border: none;
+  z-index: 100;
+  transition: background 300ms ease-out;
+  &:focus {
+    outline: thin dotted;
+  }
+  &:hover {
+    background: url(${nextHover});
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 0;
+    height: 10%;
+    padding-left: 2.19%;
+    transition: background 300ms ease-out;
+  }
+  span {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  @media (max-width: 420px) {
+    display: none;
   }
 `
 
@@ -35,7 +118,7 @@ const Wrapper = styled.section`
 const GalleryWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 23px 23px 0;
   width: 100%;
   @media (max-width: 420px) {
@@ -44,46 +127,71 @@ const GalleryWrap = styled.div`
 `
 
 export default function Gallery(props) {
-  const [biz, setBiz] = useState(0)
-  const incrementCount = e => changeImage(e)
+  const [index, setIndex] = useState(0)
+  const [startTransition, setStartTransition] = useState(false)
+  const [direction, setDirection] = useState('forward')
+  const clickThumb = e => changeImage(e)
 
   function onClickForward() {
-    if (biz + 1 === props.galleryImage.length) {
-      setBiz(0)
+    if (index + 1 === props.galleryImage.length) {
+      setIndex(0)
     } else {
-      setBiz(biz + 1)
+      setIndex(index + 1)
     }
+    setDirection('forward')
   }
 
   function onClickBack() {
-    if (biz - 1 === -1) {
-      setBiz(props.galleryImage.length - 1)
+    setDirection('back')
+    if (index - 1 === -1) {
+      setIndex(props.galleryImage.length - 1)
     } else {
-      setBiz(biz - 1)
+      setIndex(index - 1)
     }
   }
 
   function changeImage(i) {
-    setBiz(i)
+    setIndex(i)
+    setDirection('thumb')
   }
 
   return (
     <div>
       <MainImgWrap>
-        <button onClick={onClickBack}>Previous Image</button>
-        <button onClick={onClickForward}>Next Image</button>
-        <img key={biz} src={props.galleryImage[biz].url} />
+        <BackBtn onClick={onClickBack}>
+          <span>Previous Image</span>
+        </BackBtn>
+        <SwitchTransition>
+          <CSSTransition
+            in={startTransition}
+            onEntered={() => setStartTransition(false)}
+            timeout={{ enter: 400, exit: 250 }}
+            classNames={direction}
+            key={index}
+          >
+            <img
+              src={
+                'https://media.graphcms.com/auto_image/compress/' +
+                props.galleryImage[index].handle
+              }
+              alt={props.galleryImage[index].altText}
+            />
+          </CSSTransition>
+        </SwitchTransition>
+        <FwdBtn onClick={onClickForward}>
+          <span>Next Image</span>
+        </FwdBtn>
       </MainImgWrap>
       <Wrapper>
         <GalleryWrap className="thumbs">
-          {props.galleryImage.map(({ url, altText }, index) => (
+          {props.galleryImage.map(({ url, altText }, key) => (
             <Thumb
               url={url}
               altText={altText}
-              key={index}
-              position={index}
-              click={incrementCount}
-              biz={biz}
+              key={key}
+              position={key}
+              click={clickThumb}
+              index={index}
             />
           ))}
         </GalleryWrap>
