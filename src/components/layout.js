@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
+import { StaticQuery, graphql} from 'gatsby'
 import { ThemeProvider } from 'emotion-theming'
 import { injectGlobal } from 'emotion'
 import Header from './header'
@@ -91,15 +91,10 @@ const Layout = ({ children }) => (
             ]}
             script={[
                 {
-                  defer: 'true',
+                  async: 'true',
                   src: 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js',
                   type: 'text/javascript',
-                },
-              {
-                defer: 'true',
-                src: '../../tothetop.js',
-                type: 'text/javascript',
-              }
+                }
             ]}
           >
             <html lang="en" />
