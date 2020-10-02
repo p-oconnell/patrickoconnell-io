@@ -59,7 +59,6 @@ const currentYear = new Date().getFullYear()
 const Footer = ({ siteTitle }) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      console.log('USE EFFECT FUNCTION TRIGGERED')
       toTheTop()
     }
   })
