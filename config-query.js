@@ -4,18 +4,17 @@ exports.query = `{
     sort
     title
     slug
+    industry
     workType
     description
     heroImage{
       url
-      altText
-    }
-    thumbnailImage{
-      url
+      handle
       altText
     }
     galleryImage{
       url
+      handle
       altText
     }
   }

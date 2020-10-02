@@ -4,6 +4,8 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-graphcms`,
       options: {
@@ -15,8 +17,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-emotion`,
       options: {
-        "sourceMap": true,
-        "autoLabel": true,
+        sourceMap: true,
+        autoLabel: true,
       },
     },
     {
