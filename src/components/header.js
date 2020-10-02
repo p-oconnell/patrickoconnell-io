@@ -12,27 +12,27 @@ const Logo = styled.img`
   display: block;
   height: 32px;
   @media (max-width: 420px) {
-      width: 100%;
-      height: auto;
-      margin-top: 22px;
+    width: 100%;
+    height: auto;
+    margin-top: 22px;
   }
 `
 const LogoLnk = styled(Link)`
   display: block;
   padding: 50px 0 82px;
   @media (max-width: 420px) {
-      padding-bottom: 45px;
+    padding-bottom: 45px;
   }
 `
 const Menu = styled.nav`
   float: right;
   margin-top: 34px;
   @media (max-width: 420px) {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-      height: auto;
-      margin-top: 17px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: auto;
+    margin-top: 17px;
   }
 `
 const MenuLnk = styled(Link)`
@@ -42,23 +42,25 @@ const MenuLnk = styled(Link)`
   font-weight: 400;
   padding-left: 34px;
   &:hover {
-      color: #57963F;
+    color: #57963f;
   }
-   @media (max-width: 420px) {
-       padding: 0;
-   }
+  @media (max-width: 420px) {
+    padding: 0;
+  }
 `
 
-const Header = ({ siteTitle }) => (
-  <HeadWrapper>
-    <Menu>
-      <MenuLnk to="/resume"> Résumé </MenuLnk>
-      <MenuLnk to="/about"> About </MenuLnk>
-    </Menu>
-    <LogoLnk to="/">
-      <Logo src={logo} alt={siteTitle} />
-    </LogoLnk>
-  </HeadWrapper>
-)
+const Header = ({ siteTitle }) => {
+  return (
+    <HeadWrapper>
+      <Menu>
+        <MenuLnk to="/resume"> Résumé </MenuLnk>
+        <MenuLnk to="/about"> About </MenuLnk>
+      </Menu>
+      <LogoLnk to="/">
+        <Logo src={logo} alt={siteTitle} />
+      </LogoLnk>
+    </HeadWrapper>
+  )
+}
 
 export default Header
