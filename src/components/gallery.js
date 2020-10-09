@@ -118,19 +118,29 @@ const Wrapper = styled.section`
 const GalleryWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   margin: 23px 23px 0;
   width: 100%;
   @media (max-width: 420px) {
     margin: 23px 0 0;
+    justify-content: flex-start;
   }
 `
 
 export default function Gallery(props) {
   const [index, setIndex] = useState(0)
   const [startTransition, setStartTransition] = useState(false)
-  const [direction, setDirection] = useState('forward')
+  const [direction, setDirection] = useState('thumb')
   const clickThumb = e => changeImage(e)
+  const isDisplayable = hasImages()
+
+  function hasImages() {
+    if (props.galleryImage.length > 1) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   function onClickForward() {
     if (index + 1 === props.galleryImage.length) {
@@ -138,11 +148,9 @@ export default function Gallery(props) {
     } else {
       setIndex(index + 1)
     }
-    setDirection('forward')
   }
 
   function onClickBack() {
-    setDirection('back')
     if (index - 1 === -1) {
       setIndex(props.galleryImage.length - 1)
     } else {
@@ -152,15 +160,16 @@ export default function Gallery(props) {
 
   function changeImage(i) {
     setIndex(i)
-    setDirection('thumb')
   }
 
   return (
     <div>
       <MainImgWrap>
-        <BackBtn onClick={onClickBack}>
-          <span>Previous Image</span>
-        </BackBtn>
+        {isDisplayable && (
+          <BackBtn onClick={onClickBack}>
+            <span>Previous Image</span>
+          </BackBtn>
+        )}
         <SwitchTransition>
           <CSSTransition
             in={startTransition}
@@ -178,24 +187,28 @@ export default function Gallery(props) {
             />
           </CSSTransition>
         </SwitchTransition>
-        <FwdBtn onClick={onClickForward}>
-          <span>Next Image</span>
-        </FwdBtn>
+        {isDisplayable && (
+          <FwdBtn onClick={onClickForward}>
+            <span>Next Image</span>
+          </FwdBtn>
+        )}
       </MainImgWrap>
-      <Wrapper>
-        <GalleryWrap className="thumbs">
-          {props.galleryImage.map(({ url, altText }, key) => (
-            <Thumb
-              url={url}
-              altText={altText}
-              key={key}
-              position={key}
-              click={clickThumb}
-              index={index}
-            />
-          ))}
-        </GalleryWrap>
-      </Wrapper>
+      {isDisplayable && (
+        <Wrapper>
+          <GalleryWrap className="thumbs">
+            {props.galleryImage.map(({ url, altText }, key) => (
+              <Thumb
+                url={url}
+                altText={altText}
+                key={key}
+                position={key}
+                click={clickThumb}
+                index={index}
+              />
+            ))}
+          </GalleryWrap>
+        </Wrapper>
+      )}
     </div>
   )
 }
