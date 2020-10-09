@@ -7,6 +7,12 @@ import logo from '../images/LOGO.svg'
 const HeadWrapper = styled.header`
   width: 100%;
   padding: 0 10.41%;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 420px) {
+    margin: 0 3%;
+    flex-direction: column-reverse;
+  }
 `
 const Logo = styled.img`
   display: block;
@@ -52,10 +58,6 @@ const MenuLnk = styled(Link)`
 const Header = ({ siteTitle }) => {
   return (
     <HeadWrapper>
-      <Menu>
-        <MenuLnk to="/resume"> Résumé </MenuLnk>
-        <MenuLnk to="/about"> About </MenuLnk>
-      </Menu>
       <LogoLnk to="/">
         <Logo src={logo} alt={siteTitle} />
       </LogoLnk>
