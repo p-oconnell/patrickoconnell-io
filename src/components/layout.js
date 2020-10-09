@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { StaticQuery, graphql} from 'gatsby'
+import { StaticQuery, graphql } from 'gatsby'
 import { ThemeProvider } from 'emotion-theming'
 import { injectGlobal } from 'emotion'
 import Header from './header'
@@ -62,11 +62,11 @@ a {
 
 const theme = {
   charcoal: '#454545',
-  whisper: '#e5e5e5',
+  whisper: '#d0d0d0',
   txtlrg: '1.807rem',
   txtmd: '1.42rem',
-  border: 'inset 15px #e5e5e5',
-  borderMobile: 'inset 7px #e5e5e5',
+  border: 'inset 15px #d0d0d0',
+  borderMobile: 'inset 7px #d0d0d0',
 }
 
 const Layout = ({ children }) => (
@@ -90,16 +90,17 @@ const Layout = ({ children }) => (
               { name: 'keywords', content: 'sample, something' },
             ]}
             script={[
-                {
-                  async: 'true',
-                  src: 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js',
-                  type: 'text/javascript',
-                }
+              {
+                async: 'true',
+                src:
+                  'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js',
+                type: 'text/javascript',
+              },
             ]}
           >
             <html lang="en" />
             <link
-              href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap"
+              href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
               rel="stylesheet"
             />
             <body id="top" />

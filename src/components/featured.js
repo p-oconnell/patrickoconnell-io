@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import FeaturedTitle from '../components/featured-title'
 import FeaturedImg from '../components/fearured-img'
 import { StaticQuery, graphql } from 'gatsby'
@@ -12,7 +13,8 @@ const Outer = styled.article`
     margin-bottom: 36px;
   }
 `
-const Wrap = styled.div`
+
+const Wrap = styled(Link)`
   display: flex;
   flex-direction: row;
   margin-bottom: 114px;
@@ -21,6 +23,10 @@ const Wrap = styled.div`
     @media (max-width: 420px) {
       flex-direction: column;
     }
+  }
+  &:hover .featuredtitle-hover {
+    border: inset 18px #d0d0d0;
+    transition: border 100ms ease;
   }
   @media (max-width: 420px) {
     flex-direction: column;
@@ -55,18 +61,17 @@ const Featured = () => (
     render={data => (
       <Outer>
         {data.allProject.edges.map(({ node }, index) => (
-          <Wrap key={index}>
+          <Wrap key={index} to={node.slug}>
             <FeaturedImg
-              slug={node.slug}
               src={node.heroImage.url}
               handle={node.heroImage.handle}
               alt={node.heroImage.altText}
             />
             <FeaturedTitle
-              slug={node.slug}
               title={node.title}
               workType={node.workType}
               industry={node.industry}
+              className="featuredtitle-hover"
             />
           </Wrap>
         ))}

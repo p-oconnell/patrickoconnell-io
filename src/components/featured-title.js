@@ -10,6 +10,11 @@ const Info = styled.header`
   flex-direction: column;
   justify-content: center;
   background-color: #373737;
+  transition: border 100ms ease;
+  &:hover {
+    border: inset 17px #e5e5e5;
+    transition: border 100ms ease;
+  }
   @media (max-width: 420px) {
     border: ${props => props.theme.borderMobile};
     height: auto;
@@ -18,7 +23,7 @@ const Info = styled.header`
   }
 `
 
-const ProjLnk = styled(Link)`
+const Proj = styled.div`
   margin-left: 0.75rem;
   margin-right: 0.75rem;
   display: block;
@@ -46,12 +51,12 @@ const Job = styled.h3`
 
 export default function FeaturedTitle(props) {
   return (
-    <Info>
-      <ProjLnk to={'/' + props.slug}>
+    <Info className="featuredtitle-hover">
+      <Proj>
         <Client>{props.title}</Client>
         <Industry>{props.industry}</Industry>
         <Job>{props.workType}</Job>
-      </ProjLnk>
+      </Proj>
     </Info>
   )
 }
