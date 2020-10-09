@@ -7,6 +7,9 @@ import styled from 'react-emotion'
 
 const Article = styled.article`
   margin: 0 10.41%;
+  @media (max-width: 420px) {
+    margin: 0 3%;
+  }
 `
 
 const TitleWrap = styled.div`
