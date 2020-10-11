@@ -15,7 +15,7 @@ const Foot = styled.footer`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  background-color: #98cc84;
+  background-color: #86ac7a;
   @media (max-width: 420px) {
     flex-direction: column-reverse;
     align-items: center;
