@@ -46,7 +46,7 @@ html {
     background-color: #424242;
 }
 body {
-    font-family: 'EB Garamond', serif;
+    font-family: "EB Garamond",  Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
     color: #e5e5e5;
 }
 a {
@@ -61,7 +61,7 @@ a {
 `
 
 const theme = {
-  charcoal: '#454545',
+  charcoal: '#3b3b3b',
   whisper: '#d0d0d0',
   txtlrg: '1.807rem',
   txtmd: '1.42rem',
@@ -100,7 +100,7 @@ const Layout = ({ children }) => (
           >
             <html lang="en" />
             <link
-              href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
+              href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=auto"
               rel="stylesheet"
             />
             <body id="top" />
