@@ -9,7 +9,6 @@ const ThumbWrap = styled.a`
     width: calc(64% / 12);
     margin: 0 0.5%;
     padding: 0.2rem;
-    border-radius: 8px;
     height: 9vh;
     min-height: 50px;
     @media (max-width: 420px) {
@@ -39,11 +38,11 @@ export default function Thumb(props) {
   function highlightSelected(currentPosition, position) {
     if (currentPosition === position) {
       return {
-        border: '1px solid #98CC84',
+        borderBottom: '5px solid #98CC84',
         transition: 'border 250ms ease-in-out',
       }
     } else {
-      return { border: '1px solid #E0E5DA' }
+      return { borderBottom: 'none' }
     }
   }
 

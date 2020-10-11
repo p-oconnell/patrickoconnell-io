@@ -123,7 +123,8 @@ const GalleryWrap = styled.div`
   width: 100%;
   @media (max-width: 420px) {
     margin: 23px 0 0;
-    justify-content: flex-start;
+    justify-content: center;
+    flex-direction: column;
   }
 `
 
