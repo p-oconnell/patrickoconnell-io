@@ -7,57 +7,65 @@ const GridWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   border-top: offset 15px #e5e5e5;
-  background: linear-gradient(#bcdada 45%, #98cc84);
+  background: linear-gradient(#bcdada 45%, #86ac7a);
   padding: 114px 10.41% 0;
   @media (max-width: 420px) {
-      padding-top: 36px;
+    padding-top: 36px;
   }
 `
 const GridTitle = styled.h4`
   text-decoration: none;
   font-size: 1.42rem;
-  font-weight: 600;
+  color: ${props => props.theme.charcoal};
 `
 
 const GridHero = styled.div`
   height: 450px;
   margin: 0;
   @media (max-width: 420px) {
-      height: auto;
+    height: auto;
   }
   img {
     border: ${props => props.theme.border};
     width: 100%;
     height: 450px;
     object-fit: cover;
+    transition: border 100ms ease;
+    &:hover {
+      border: inset 18px #d0d0d0;
+      transition: border 100ms ease;
+    }
     @media (max-width: 420px) {
-        border: ${props => props.theme.borderMobile};
-        height: 45vh;
+      border: ${props => props.theme.borderMobile};
+      height: 45vh;
     }
   }
 `
 const Article = styled.article`
   width: calc(33.33% - 16px);
   a {
+    font-weight: 200;
+    color: #454545;
     text-decoration: none;
-    :hover {
-      text-decoration: underline;
+    transition: font-weight 100ms ease-in, text-decoration 100ms ease-out;
+    &:hover {
+      color: #c3dede;
+      transition: font-weight 100ms ease-in, text-decoration 100ms ease-in;
+      font-family: sans-serif;
     }
   }
   @media (max-width: 420px) {
-      width: 100%;
-      margin-bottom: 36px;
+    width: 100%;
+    margin-bottom: 36px;
   }
 `
 
 const GridWorkType = styled.div`
-  text-decoration: none;
-  font-weight: 400;
+  color: ${props => props.theme.charcoal};
 `
 
 const GridInfo = styled.div`
   padding: 0.3rem 0.25rem;
-  color: #454545;
   line-height: 140%;
 `
 
