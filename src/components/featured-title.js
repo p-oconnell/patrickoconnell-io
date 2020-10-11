@@ -51,7 +51,7 @@ const Job = styled.h3`
 
 export default function FeaturedTitle(props) {
   return (
-    <Info className="featuredtitle-hover">
+    <Info className={props.hoverClass}>
       <Proj>
         <Client>{props.title}</Client>
         <Industry>{props.industry}</Industry>

@@ -68,10 +68,10 @@ const Featured = () => (
               alt={node.heroImage.altText}
             />
             <FeaturedTitle
+              hoverClass="featuredtitle-hover"
               title={node.title}
               workType={node.workType}
               industry={node.industry}
-              className="featuredtitle-hover"
             />
           </Wrap>
         ))}
