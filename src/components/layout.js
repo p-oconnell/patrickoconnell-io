@@ -7,6 +7,8 @@ import { injectGlobal } from 'emotion'
 import Header from './header'
 import Footer from './footer'
 
+require('typeface-eb-garamond')
+
 injectGlobal`
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -46,7 +48,7 @@ html {
     background-color: #424242;
 }
 body {
-    font-family: 'EB Garamond', serif;
+    font-family: "EB Garamond", serif;
     color: #e5e5e5;
 }
 a {
@@ -63,10 +65,11 @@ a {
 const theme = {
   charcoal: '#454545',
   whisper: '#d0d0d0',
+  txtxlrg: '2.2rem',
   txtlrg: '1.807rem',
   txtmd: '1.42rem',
-  border: 'inset 15px #d0d0d0',
-  borderMobile: 'inset 7px #d0d0d0',
+  border: 'solid 2px #d0d0d0',
+  borderMobile: 'solid 2px #d0d0d0',
 }
 
 const Layout = ({ children }) => (
@@ -89,20 +92,8 @@ const Layout = ({ children }) => (
               { name: 'description', content: 'Sample' },
               { name: 'keywords', content: 'sample, something' },
             ]}
-            script={[
-              {
-                async: 'true',
-                src:
-                  'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js',
-                type: 'text/javascript',
-              },
-            ]}
           >
             <html lang="en" />
-            <link
-              href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
-              rel="stylesheet"
-            />
             <body id="top" />
           </Helmet>
           <Header siteTitle={data.site.siteMetadata.title} />
