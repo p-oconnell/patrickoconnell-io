@@ -12,15 +12,13 @@ export default function lightbox() {
           ? e.target.currentSrc
           : e.target.firstChild.currentSrc
 
-      if (document.documentElement.clientWidth > 420) {
-        basicLightbox
-          .create(
-            `
+      basicLightbox
+        .create(
+          `
       		<img width="1400" height="900" src=${image}>
       	`
-          )
-          .show()
-      }
+        )
+        .show()
     })
   })
 }
