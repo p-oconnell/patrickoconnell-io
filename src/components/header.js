@@ -10,7 +10,6 @@ const HeadWrapper = styled.header`
   display: flex;
   flex-direction: column;
   @media (max-width: 420px) {
-    margin: 0 3%;
     flex-direction: column-reverse;
   }
 `
@@ -25,9 +24,9 @@ const Logo = styled.img`
 `
 const LogoLnk = styled(Link)`
   display: block;
-  padding: 50px 0 82px;
+  padding: 50px 0 50px;
   @media (max-width: 420px) {
-    padding-bottom: 45px;
+    padding: 25px 0 50px;
   }
 `
 const Menu = styled.nav`
