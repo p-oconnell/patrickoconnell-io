@@ -5,11 +5,9 @@ const ImageLoad = React.memo(({ src, placeholder, alt = '' }) => {
   const [currentSrc, updateSrc] = useState(placeholder)
 
   useEffect(() => {
-    // start loading original image
     const imageToLoad = new Image()
     imageToLoad.src = src
     imageToLoad.onload = () => {
-      // When image is loaded replace the src and set loading to false
       setLoading(false)
       updateSrc(src)
     }
@@ -20,7 +18,6 @@ const ImageLoad = React.memo(({ src, placeholder, alt = '' }) => {
       src={currentSrc}
       style={{
         opacity: loading ? 0.8 : 1,
-
         transition: 'opacity 250ms ease, filter 250ms ease',
       }}
       alt={alt}
