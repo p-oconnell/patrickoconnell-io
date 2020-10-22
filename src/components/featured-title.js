@@ -28,20 +28,30 @@ const Proj = styled.div`
   margin-right: 0.75rem;
   display: block;
   outline: none;
+  @media (max-width: 420px) {
+    margin: 0;
+  }
 `
 
 const Client = styled.h2`
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.42rem;
 `
 
 const Industry = styled.h4`
   font-size: 1rem;
-  margin-top: 5px;
+  margin-top: 7px;
+  margin-bottom: 16px;
+  font-style: italic;
+  @media (max-width: 420px) {
+    font-size: 1rem;
+    margin-top: 10px;
+    margin-bottom: 12px;
+  }
 `
 
 const Job = styled.h3`
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1rem;
   margin-top: 34px;
   @media (max-width: 420px) {

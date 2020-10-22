@@ -19,17 +19,17 @@ const FeaturedPicWrap = styled.div`
   @media (max-width: 420px) {
     height: 45vh;
     width: 100%;
-    border: ${props => props.theme.borderMobile};
   }
 `
 
-const FeaturedPic = styled.picture`
+const FeaturedPic = styled.div`
   img {
     width: 100%;
-    height: calc(450px - 30px);
+    height: calc(450px - 4px);
     object-fit: cover;
     @media (max-width: 420px) {
-      height: calc(45vh - 14px);
+      height: 45vh;
+      width: 100%;
     }
   }
 `

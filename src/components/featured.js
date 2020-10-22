@@ -24,8 +24,9 @@ const Wrap = styled(Link)`
       flex-direction: column;
     }
   }
-  &:hover .featuredtitle-hover {
-    border: inset 18px #d0d0d0;
+  &:hover .featuredtitle-hover,
+  &:hover .featuredimg-hover {
+    border: solid 2px #98cc84;
     transition: border 100ms ease;
   }
   @media (max-width: 420px) {
