@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../components/layout'
-import Gallery from '../components/gallery'
+import Hero from '../components/hero'
+import GalleryItem from '../components/gallery-item'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import styled from 'react-emotion'
+
+import lightbox from '../components/lightbox'
+import '../components/lightbox.scss'
 
 const Article = styled.article`
   margin: 0 10.41%;
@@ -12,47 +16,75 @@ const Article = styled.article`
   }
 `
 
+const Text = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
+
 const TitleWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: flex-start;
-  width: 100%;
-  margin: 0 23px 23px 0;
+  width: 50%;
+  padding-right: 1rem;
   @media (max-width: 420px) {
-    margin: 0 0 23px 0;
+    margin: 15px 0 15px 0;
+    width: 100%;
   }
 `
 
-const ProjectTitle = styled.h1`
-  font-weight: 600;
-  font-size: ${props => props.theme.txtlrg};
+const Title = styled.h1`
+  margin: 50px 0 11px;
+  font-variation-settings: 'wght' 600;
+  font-size: ${props => props.theme.txtxlrg};
+  @media (max-width: 420px) {
+    margin: 15px 0 6px;
+  }
 `
 
-const Work = styled.h2`
+const Industry = styled.h2`
   font-weight: 400;
   font-size: ${props => props.theme.txtlrg};
-  span {
-    font-style: italic;
+  font-style: italic;
+  margin-bottom: 52px;
+  @media (max-width: 420px) {
+    margin-bottom: 15px;
   }
+`
+
+const WorkType = styled.h2`
+  font-variation-settings: 'wght' 400;
+  font-size: ${props => props.theme.txtlrg};
 `
 
 const DescriptionWrap = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-end;
-  width: 100%;
-  justify-content: center;
-  margin-bottom: 114px;
+  width: 50%;
+  justify-content: flex-start;
+  margin: 75px 0 75px;
   div {
-    width: 750px;
-    margin: 1.5rem auto 0;
+    max-width: 750px;
   }
   p {
-    font-weight: 400;
+    font-weight: 100;
     line-height: 156%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.05rem;
   }
+  @media (max-width: 420px) {
+    width: 100%;
+    margin: 25px 0;
+  }
+`
+
+const Gallery = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 45px;
 `
 
 const showdown = require('showdown')
@@ -65,22 +97,47 @@ export default ({ data }) => {
     return { __html: description }
   }
 
+  const [mainImg, ...gallery] = data.project.galleryImage
+
+  const gallerySize = gallery.length
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      lightbox()
+    }
+  })
+
   return (
     <Layout>
+      {console.log(mainImg.handle)}
       <Helmet>
         <title>{"Patrick O'Connell - " + data.project.title}</title>
       </Helmet>
       <Article>
-        <TitleWrap>
-          <ProjectTitle>{data.project.title}&nbsp;</ProjectTitle>
-          <Work>
-            (<span>{data.project.workType}</span>)
-          </Work>
-        </TitleWrap>
-        <Gallery galleryImage={data.project.galleryImage} />
-        <DescriptionWrap>
-          <div dangerouslySetInnerHTML={createMarkup()} />
-        </DescriptionWrap>
+        <Hero handle={mainImg.handle} alt={mainImg.alt} />
+        <Text>
+          <TitleWrap>
+            <Title>{data.project.title}&nbsp;</Title>
+            <Industry>{data.project.industry}</Industry>
+            <WorkType>{data.project.workType}</WorkType>
+          </TitleWrap>
+          <DescriptionWrap>
+            <div dangerouslySetInnerHTML={createMarkup()} />
+          </DescriptionWrap>
+        </Text>
+        {gallerySize > 0 && (
+          <Gallery>
+            {gallery.map(({ handle, altText }, key) => (
+              <GalleryItem
+                key={key}
+                handle={handle}
+                size={gallerySize}
+                index={key}
+                isFull={false}
+              />
+            ))}
+          </Gallery>
+        )}
       </Article>
     </Layout>
   )
@@ -94,9 +151,11 @@ export const ProjectPageQuery = graphql`
       slug
       title
       description
+      industry
       workType
       heroImage {
         url
+        handle
         altText
       }
       galleryImage {
