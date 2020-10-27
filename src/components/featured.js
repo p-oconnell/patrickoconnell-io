@@ -7,9 +7,12 @@ import styled from 'react-emotion'
 
 const Outer = styled.article`
   width: 100%;
-  padding: 0 10.41%;
+  padding: 0 3%;
   margin-bottom: 114px;
-  @media (max-width: 420px) {
+  @media (min-width: 1300px) {
+    padding: 0 10.41%;
+  }
+  @media (max-width: 600px) {
     margin-bottom: 36px;
   }
 `
@@ -20,15 +23,16 @@ const Wrap = styled(Link)`
   margin-bottom: 114px;
   :nth-of-type(even) {
     flex-direction: row-reverse;
-    @media (max-width: 420px) {
+    @media (max-width: 850px) {
       flex-direction: column;
     }
   }
-  &:hover .featuredtitle-hover {
-    border: inset 18px #d0d0d0;
+  &:hover .featuredtitle-hover,
+  &:hover .featuredimg-hover {
+    border: solid 2px #98cc84;
     transition: border 100ms ease;
   }
-  @media (max-width: 420px) {
+  @media (max-width: 850px) {
     flex-direction: column;
     margin-bottom: 36px;
   }

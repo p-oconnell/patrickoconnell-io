@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import styled from 'react-emotion'
 
 import LazyLoad from 'react-lazy-load'
@@ -16,20 +15,20 @@ const FeaturedPicWrap = styled.div`
   width: calc(100% / 3 * 2);
   height: 450px;
   transition: border 100ms ease;
-  @media (max-width: 420px) {
+  @media (max-width: 850px) {
     height: 45vh;
     width: 100%;
-    border: ${props => props.theme.borderMobile};
   }
 `
 
-const FeaturedPic = styled.picture`
+const FeaturedPic = styled.div`
   img {
     width: 100%;
-    height: calc(450px - 30px);
+    height: calc(450px - 4px);
     object-fit: cover;
-    @media (max-width: 420px) {
-      height: calc(45vh - 14px);
+    @media (max-width: 600px) {
+      height: 45vh;
+      width: 100%;
     }
   }
 `
