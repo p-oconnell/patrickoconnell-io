@@ -22,7 +22,7 @@ const MainImgWrap = styled.div`
   flex-direction: row;
   align-items: center;
   position: relative;
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     background: none;
     border: none;
     padding: 0;
@@ -33,7 +33,7 @@ const MainImgWrap = styled.div`
     max-height: 100%;
     margin: 0 auto;
     object-fit: contain;
-    @media (max-width: 420px) {
+    @media (max-width: 600px) {
       max-width: 100%;
       height: 30vh;
     }
@@ -69,7 +69,7 @@ const BackBtn = styled.button`
     height: 1px;
     overflow: hidden;
   }
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     display: none;
   }
 `
@@ -104,7 +104,7 @@ const FwdBtn = styled.button`
     height: 1px;
     overflow: hidden;
   }
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     display: none;
   }
 `
@@ -121,7 +121,7 @@ const GalleryWrap = styled.div`
   justify-content: center;
   margin: 23px 23px 0;
   width: 100%;
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     margin: 23px 0 0;
     justify-content: flex-start;
   }

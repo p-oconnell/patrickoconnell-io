@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import styled from 'react-emotion'
 
 const Info = styled.header`
@@ -15,7 +14,7 @@ const Info = styled.header`
     border: inset 17px #e5e5e5;
     transition: border 100ms ease;
   }
-  @media (max-width: 420px) {
+  @media (max-width: 850px) {
     border: ${props => props.theme.borderMobile};
     height: auto;
     width: 100%;
@@ -28,7 +27,7 @@ const Proj = styled.div`
   margin-right: 0.75rem;
   display: block;
   outline: none;
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     margin: 0;
   }
 `
@@ -43,7 +42,7 @@ const Industry = styled.h4`
   margin-top: 7px;
   margin-bottom: 16px;
   font-style: italic;
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     font-size: 1rem;
     margin-top: 10px;
     margin-bottom: 12px;
@@ -54,7 +53,7 @@ const Job = styled.h3`
   font-weight: 500;
   font-size: 1rem;
   margin-top: 34px;
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     margin-top: 0;
   }
 `

@@ -7,23 +7,25 @@ const GridWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   border-top: offset 15px #e5e5e5;
-  padding: 0 10.41% 0;
-  @media (max-width: 420px) {
+  padding: 0 3% 0;
+  @media (min-width: 1300px) {
+    padding: 0 10.41%;
+  }
+  @media (max-width: 600px) {
     padding-top: 36px;
   }
 `
 const GridHero = styled.div`
   height: 450px;
   margin: 0;
-  @media (max-width: 420px) {
-    height: auto;
+  @media (max-width: 600px) {
+    height: 45vh;
   }
   img {
     width: 100%;
     height: 450px;
     object-fit: cover;
-    @media (max-width: 420px) {
-      border: ${props => props.theme.borderMobile};
+    @media (max-width: 600px) {
       height: 45vh;
     }
   }
@@ -37,7 +39,7 @@ const Article = styled.article`
       color: #98cc84;
     }
   }
-  @media (max-width: 420px) {
+  @media (max-width: 1080px) {
     width: 100%;
     margin-bottom: 36px;
   }

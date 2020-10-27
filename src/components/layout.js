@@ -55,7 +55,7 @@ a {
     color: #e5e5e5;
     text-decoration: none;
 }
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
       html {
           font-size: 19px
       }

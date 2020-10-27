@@ -10,13 +10,16 @@ const Foot = styled.footer`
   height: 150px;
   font-size: 19px;
   color: #c7ccc7;
-  padding: 14px 10.41% 25px;
+  padding: 14px 3% 25px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
   background-color: #98cc84;
-  @media (max-width: 420px) {
+  @media (min-width: 1300px) {
+    padding: 0 10.41%;
+  }
+  @media (max-width: 600px) {
     flex-direction: column-reverse;
     align-items: center;
   }
@@ -24,6 +27,7 @@ const Foot = styled.footer`
 
 const Copy = styled.div`
   color: ${props => props.theme.charcoal};
+  font-size: 26px;
 `
 
 const Top = styled.nav`

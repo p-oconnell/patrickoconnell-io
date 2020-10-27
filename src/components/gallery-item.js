@@ -14,7 +14,7 @@ const FullWidth = css`
   align-items: center;
   background: linear-gradient(180deg, #e4e4e4 45.83%, #d4e6be 100%);
   border: 2px solid #c4c4c4;
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     background: none;
     border: none;
     padding: 0;
@@ -34,7 +34,7 @@ const HalfWidth = css`
   background: url(${background});
   margin-bottom: 30px;
   cursor: pointer;
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     background: none;
     border: none;
     padding: 0;
@@ -50,7 +50,7 @@ const GalleryImg = css`
   max-width: 100%;
   margin: 0 auto;
   object-fit: contain;
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     max-width: 100%;
     height: 30vh;
   }
@@ -63,6 +63,7 @@ export default function GalleryItem(props) {
       <img
         css={GalleryImg}
         src={'https://media.graphcms.com/auto_image/compress/' + props.handle}
+        alt={props.alt}
       />
     </div>
   )

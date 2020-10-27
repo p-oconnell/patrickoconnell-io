@@ -10,8 +10,11 @@ import lightbox from '../components/lightbox'
 import '../components/lightbox.scss'
 
 const Article = styled.article`
-  margin: 0 10.41%;
-  @media (max-width: 420px) {
+  margin: 0 3%;
+  @media (min-width: 1300px) {
+    padding: 0 10.41%;
+  }
+  @media (max-width: 600px) {
     margin: 0 3%;
   }
 `
@@ -29,7 +32,7 @@ const TitleWrap = styled.div`
   justify-content: flex-start;
   width: 50%;
   padding-right: 1rem;
-  @media (max-width: 420px) {
+  @media (max-width: 800px) {
     margin: 15px 0 15px 0;
     width: 100%;
   }
@@ -39,7 +42,7 @@ const Title = styled.h1`
   margin: 50px 0 11px;
   font-variation-settings: 'wght' 600;
   font-size: ${props => props.theme.txtxlrg};
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     margin: 15px 0 6px;
   }
 `
@@ -49,7 +52,7 @@ const Industry = styled.h2`
   font-size: ${props => props.theme.txtlrg};
   font-style: italic;
   margin-bottom: 52px;
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     margin-bottom: 15px;
   }
 `
@@ -74,7 +77,7 @@ const DescriptionWrap = styled.div`
     line-height: 156%;
     margin-bottom: 1.05rem;
   }
-  @media (max-width: 420px) {
+  @media (max-width: 800px) {
     width: 100%;
     margin: 25px 0;
   }
@@ -131,8 +134,7 @@ export default ({ data }) => {
               <GalleryItem
                 key={key}
                 handle={handle}
-                size={gallerySize}
-                index={key}
+                alt={altText}
                 isFull={false}
               />
             ))}

@@ -12,7 +12,7 @@ const ThumbWrap = styled.a`
     border-radius: 8px;
     height: 9vh;
     min-height: 50px;
-    @media (max-width: 420px) {
+    @media (max-width: 600px) {
       padding: 0.5%;
       border: none;
       border-radius: 0;

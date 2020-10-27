@@ -15,7 +15,7 @@ const MainImgWrap = styled.div`
   align-items: center;
   position: relative;
   cursor: pointer;
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     background: none;
     border: none;
     padding: 0;
@@ -24,19 +24,14 @@ const MainImgWrap = styled.div`
   img {
     display: block;
     max-height: 100%;
+    max-width: 100%;
     margin: 0 auto;
     object-fit: contain;
-    @media (max-width: 420px) {
+    @media (max-width: 600px) {
       max-width: 100%;
       max-height: 60vh;
     }
   }
-`
-
-const Wrapper = styled.section`
-  display: flex;
-  width: 100%;
-  justify-content: center;
 `
 
 export default function Hero(props) {
